@@ -1,30 +1,10 @@
-import { useState, useEffect } from "react";
-import { API } from "../api/notusapi";
+import { useState } from "react";
 import "./App.css";
 
-export default function App() {
-  const [state1, setState1] = useState(null as any);
-  async function getApi() {
-    // ?lastItem=0&limit=100&network=dev
-    let blocks = await API.get("/blocks", {
-      params: {
-        lastItem: 0,
-        limit: 100,
-        network: "dev",
-      },
-    });
-    setState1(blocks.data);
-  }
-  useEffect(() => {
-    getApi();
-  }, []);
+function App() {
+  const [count, setCount] = useState(0);
 
-  return (
-    <div className="App">
-      {state1 &&
-        state1.map((value: any) => {
-          return <div>{value.row_no}</div>;
-        })}
-    </div>
-  );
+  return <div className="App">Helllooooğğ</div>;
 }
+
+export default App;
