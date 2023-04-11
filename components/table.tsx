@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "../src/App";
 import Myrows from "../components/rows";
 

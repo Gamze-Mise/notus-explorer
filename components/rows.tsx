@@ -1,6 +1,4 @@
 import "../src/App.css";
-import { useState, useEffect } from "react";
-import { API } from "../api/notusapi";
 
 export default function Myrows({ blocks }: { blocks: any }) {
   return (
