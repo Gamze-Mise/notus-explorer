@@ -46,17 +46,18 @@ table {
   width: 100%;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #101010;
   text-align: center;
   padding: 20px;
-  
 }
 th {
-background-color: white;
-color: #101010;
+  background-color: white;
+  color: #101010;
 }
 
 tr:nth-child(even) {
   background-color: #484848;
+  color: white;
 }
