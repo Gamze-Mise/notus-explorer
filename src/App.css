@@ -61,3 +61,14 @@ tr:nth-child(even) {
   background-color: #484848;
   color: white;
 }
+.None{
+  text-decoration: none;
+  color: white;
+  border: 0px;
+  width: 100%;
+}
+.DetailDiv{
+  display: flex;
+  margin-bottom: 25px;
+  flex-direction: column;
+}
