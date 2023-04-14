@@ -2,10 +2,9 @@ import "../src/App.css";
 import { API } from "../api/notusapi";
 import { useState, useEffect } from "react";
 import { TxBlock } from "./islemBlogu";
+import { Block } from "../api/types";
 
 export default function DetailTable({ block }: { block: any }) {
-  const blockData = JSON.parse(block.data);
-
   return (
     <div>
       <table>
@@ -18,19 +17,19 @@ export default function DetailTable({ block }: { block: any }) {
         <tbody>
           <tr>
             <td>Block Type</td>
-            <td>{blockData.info.type}</td>
+            <td>{block.data.info.type}</td>
           </tr>
           <tr>
             <td>Timestamp</td>
-            <td>{blockData.info.time}</td>
+            <td>{block.data.info.time}</td>
           </tr>
           <tr>
             <td>Transactions</td>
-            <td>{blockData.info.nonce.method}</td>
+            <td>{block.data.info.nonce.method}</td>
           </tr>
           <tr>
             <td>Gas Used</td>
-            <td>{blockData.feeTotal}</td>
+            <td>{block.data.feeTotal}</td>
           </tr>
           <tr>
             <td>Status</td>
@@ -38,13 +37,13 @@ export default function DetailTable({ block }: { block: any }) {
           </tr>
           <tr>
             <td>Creator</td>
-            <td>{blockData["validator"]["map"]["block"][1000]}</td>
+            <td>{JSON.stringify(block.data.validator.map.block)}</td>
           </tr>
         </tbody>
       </table>
       <br />
 
-      {blockData.info.type == 120 ? (
+      {block.data.info.type == 120 ? (
         <TxBlock row_no={block.row_no} />
       ) : (
         "Empty Block"
