@@ -4,6 +4,18 @@ export interface Block {
   data: BlockData;
 }
 
+export interface Transaction {
+  id: number;
+  rowNo: string;
+  data: Data;
+  transactionId: string;
+  receiver: string;
+  sender: string;
+  timestamp: string;
+  date: number;
+  isMulti: number;
+}
+
 interface BlockData {
   info: Info;
   cipher: Cipher;
@@ -80,4 +92,32 @@ interface Nonce {
   method: number;
   type: number;
   difficulty: number;
+}
+
+///vbeenekvn
+
+interface Data {
+  Sender: Sender;
+  Receiver: Receiver;
+  CurrentTime: number;
+  UnlockTime: number;
+  Currency: string;
+  Volume: string;
+  Fee: string;
+  PublicKey: string;
+  Sign: string;
+}
+
+interface Receiver {
+  Wallet: string;
+  Balance: Record<string, Record<number, string>>;
+  WitnessRowNo: number;
+  WitnessBlockUid: string;
+}
+
+interface Sender {
+  Wallet: string;
+  Balance: Record<string, Record<number, string>>;
+  WitnessRowNo: number;
+  WitnessBlockUid: string;
 }
