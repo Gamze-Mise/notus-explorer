@@ -1,7 +1,8 @@
 import "../src/App";
 import Myrows from "../components/rows";
+import { Block } from "../api/types";
 
-export default function Mytable({ blocks }: { blocks: any }) {
+export default function Mytable({ blocks }: { blocks: Block[] }) {
   return (
     <table>
       <thead>

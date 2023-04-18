@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { TxBlock } from "./islemBlogu";
 import { Block } from "../api/types";
 
-export default function DetailTable({ block }: { block: any }) {
+export default function DetailTable({ block }: { block: Block }) {
   return (
     <div>
       <table>

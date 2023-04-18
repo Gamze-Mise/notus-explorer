@@ -1,51 +1,30 @@
 import { API } from "../api/notusapi";
 import { useState, useEffect } from "react";
+import { useTransactions } from "../hooks/useTransactions";
 import { Transaction } from "../api/types";
-/*
 
-
-*/
 export function TxBlock({ row_no }: { row_no: number }) {
-  const [state2, setState2] = useState<Transaction[] | null>(null);
-
-  async function getBlock300() {
-    let transactionsdata = (
-      await API.get("block/" + row_no + "/transactions", {
-        params: {
-          network: "dev",
-        },
-      })
-    ).data;
-
-    for (let i = 0; i < transactionsdata.length; i++) {
-      transactionsdata[i].data = JSON.parse(transactionsdata[i].data);
-    }
-
-    setState2(transactionsdata as Transaction[]);
-  }
-  useEffect(() => {
-    getBlock300();
-  }, []);
+  const { loading, state } = useTransactions(row_no);
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Block</th>
-            <th>Txn Hash</th>
-            <th>Age</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Value</th>
-            <th>Result</th>
-            <th>Txn Fee</th>
-          </tr>
-        </thead>
-        <tbody>
-          {state2 ? (
-            <>
-              {state2.map((value: Transaction) => {
+      {!loading && state ? (
+        <>
+          <table>
+            <thead>
+              <tr>
+                <th>Block</th>
+                <th>Txn Hash</th>
+                <th>Age</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Value</th>
+                <th>Result</th>
+                <th>Txn Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              {state.map((value: Transaction) => {
                 return (
                   <tr>
                     <td>{value.rowNo}</td>
@@ -59,14 +38,12 @@ export function TxBlock({ row_no }: { row_no: number }) {
                   </tr>
                 );
               })}
-            </>
-          ) : (
-            <tr>
-              <td>Yükleniyorum!</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+        </>
+      ) : (
+        <h1>Yükleniyorum!</h1>
+      )}
     </div>
   );
 }

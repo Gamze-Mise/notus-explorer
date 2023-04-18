@@ -5,27 +5,17 @@ import { useState, useEffect } from "react";
 import DetailTable from "../components/blockdetailtable";
 import { Link } from "react-router-dom";
 import { Block } from "../api/types";
+import { useBlock } from "../hooks/useBlock";
 
 export default function BlockDetails() {
-  const { rowno } = useParams();
-  const [state1, setState1] = useState(null as any);
-  async function getBlock() {
-    let blockAny = (
-      await API.get("/block/" + rowno, {
-        params: {
-          network: "dev",
-        },
-      })
-    ).data;
+  let { rowno } = useParams();
 
-    blockAny.data = JSON.parse(blockAny.data);
-    let block: Block = blockAny;
-
-    setState1(block);
+  if (!rowno) {
+    rowno = "0";
   }
-  useEffect(() => {
-    getBlock();
-  }, []);
+
+  const { loading, state } = useBlock(parseInt(rowno));
+
   return (
     <div>
       <div className="DetailDiv">
@@ -34,7 +24,7 @@ export default function BlockDetails() {
         <Link to="/">Go to Blocks Table</Link>
       </div>
 
-      {state1 ? <DetailTable block={state1} /> : "Bekle"}
+      {!loading && state ? <DetailTable block={state} /> : "Bekle"}
       <br />
       <br />
     </div>
