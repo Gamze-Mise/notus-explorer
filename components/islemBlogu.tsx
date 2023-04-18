@@ -1,7 +1,6 @@
-import { API } from "../api/notusapi";
-import { useState, useEffect } from "react";
 import { useTransactions } from "../hooks/useTransactions";
 import { Transaction } from "../api/types";
+import { Link } from "react-router-dom";
 
 export function TxBlock({ row_no }: { row_no: number }) {
   const { loading, state } = useTransactions(row_no);
@@ -28,7 +27,14 @@ export function TxBlock({ row_no }: { row_no: number }) {
                 return (
                   <tr>
                     <td>{value.rowNo}</td>
-                    <td>{value.transactionId.substring(0, 20) + "..."} </td>
+                    <td>
+                      <Link
+                        to={"/transaction/" + value.transactionId}
+                        className="None"
+                      >
+                        {value.transactionId.substring(0, 20) + "..."}{" "}
+                      </Link>
+                    </td>
                     <td>{value.timestamp}</td>
                     <td>{value.sender.substring(0, 20) + "..."}</td>
                     <td>{value.receiver.substring(0, 20) + "..."}</td>
