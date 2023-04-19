@@ -15,7 +15,7 @@ export default function Myrows({ blocks }: { blocks: Block[] }) {
             </td>
             <td>{value.row_no}</td>
             <td>{value.data.info.type}</td>
-            <td>{value.data.hash.FINAL.substring(0, 50) + "..."}</td>
+            <td>{value.data.hash.FINAL.substring(0, 20) + "..."}</td>
             <td>{value.data.feeTotal}</td>
             <td>{value.data.feeTotal}</td>
             <td>{value.data.txNum}</td>
